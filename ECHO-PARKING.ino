@@ -2,8 +2,8 @@
    /////////////////////////////////////////////////////////////////////////////////////////////////////
    /////////////////////////////////////////////////////////////////////////////////////////////////////
    /        __________   _________   ___________   __________    _________                             /
-   /       /___   ___/  /   _____/  /  _____   /  /  _____   \  /  ______/       \\          //      /
-   /          /  /     /  /        /  /    /  /  /  /    /  /  /  /_____        \\            //      /
+   /       /___   ___/  /   _____/  /  _____   /  /  _____   \  /  ______/       \\          //        /
+   /          /  /     /  /        /  /    /  /  /  /    /  /  /  /_____        \\            //       /
    /         /  /     /  /        /  /____/  /  /  /___/  /   /  ______/   \\\   \\    []    //   ///  /
    /     ___/  /__   /  /_____   /   ____   /  /   ___   \   /  /_____        \\\\--]]]/\[[[--////     /
    /    /________/  /________/  /__/    /__/  /__/    \__/  /________/         /////--][][--\\\\\      /
@@ -14,8 +14,9 @@
    /  This program is free software for arduino; you can redistribute it and/or modify.                /
    /  Ce programme pour Arduino est libre et gratuit; vous pouvez le distribuez et/ou le modifier.     /
    /                                                                                                   /
-   / Auteurs: Olivier et Louis Perez                                                                   /
-   /                                                                                                   /
+   / Auteurs:                                                                                          /
+   / - Olivier et Louis Perez                                                                          /
+   / - Fabrice Courmont                                                                                /
    / Another codes / Autres codes:                                                                     /
    / https://www.icaremaker.com                                                                        /
    / Mail: ionocraft@hotmail.fr                                                                        /
@@ -62,10 +63,10 @@ long measure = pulseIn(ECHO_PIN, HIGH, MEASURE_TIMEOUT);
 /* 3. Calcul la distance à partir du temps mesuré */
 float distance_mm = measure / 2.0 * SOUND_SPEED;
 
-if (distance_mm <40)
+if (distance_mm <500)
 {
 digitalWrite(ROUGE_PIN, HIGH);
-} else if(distance_mm<120)
+} else if(distance_mm<1000)
 {
 digitalWrite(JAUNE_PIN, HIGH);
 }
@@ -74,11 +75,12 @@ else
 digitalWrite(VERT_PIN, HIGH);
 }
 /* Délai d'attente pour éviter d'afficher trop de résultats à la seconde */
-delay(500);
+delay(200);
 
 // Eteindre toutes les LEDs
 digitalWrite(ROUGE_PIN, LOW);
 digitalWrite(JAUNE_PIN,LOW);
 digitalWrite(VERT_PIN, LOW);
-
+delay(200);
 }
+
